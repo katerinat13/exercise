@@ -9,31 +9,46 @@ import java.util.Scanner;
 public class App {
 
 	public static void main(String[] args) {
-		System.out.println("Please enter 1 for Insert Data or 2 for getting a Report");
+		System.out.println(message());
 		Scanner userInput = new Scanner(System.in);
 		while (userInput.hasNext()) {
-			if (userInput.hasNextInt()) {
-				switch (userInput.nextInt()) {
-					case 1:
-						storeInventory();
-						break;
-					case 2:
-						report();
-						break;
-				}
-			} else {
-				System.out.println("Please enter a 1 or 2 as an option ");
+			String input = userInput.nextLine();
+			if(input.equals("exit")){
+				break;
+			}
+			switch (input) {
+				case "1":
+					storeInventory();
+					System.out.println(message());
+					break;
+				case "2":
+					report();
+					System.out.println(message());
+					break;
+				default:
+					System.out.println("The options entered are not valid");
+					break;
 			}
 		}
 	}
 
+	private static String message(){
+		return "Please type 1 for Insert Data or 2 for getting a Report and press Enter.\n" +
+				"In case you want to exit type 'exit' and press Enter." ;
+
+	}
 	public static void storeInventory(){
-		System.out.println("Enter the name of the inventory, serial number and value: ");
+		System.out.println("Enter the name of the inventory, serial number and value separated by comma.  If you want to go back, type 'back'");
 		Scanner userInput = new Scanner(System.in);
 		ParsingItem parsingItem = new ParsingItem();
 		while (userInput.hasNext()) {
-			if (parsingItem.parsingUserInput(userInput.nextLine())) {
+			String input = userInput.nextLine();
+			if(input.equals("back")){
+				break;
+			}
+			if (parsingItem.parsingUserInput(input)) {
 				System.out.println("Item saved.");
+
 			} else {
 				System.out.println(parsingItem.getErrorMessage());
 				System.out.println("Enter the name of the inventory, serial number and value: ");
@@ -42,22 +57,25 @@ public class App {
 	}
 
 	public static void report(){
-		System.out.println("Please enter 1 for Html Report and 2 for CSV report ");
+		System.out.println("Please enter 1 for Html Report and 2 for CSV report. If you want to go back, type 'back' ");
 		Scanner userInput = new Scanner(System.in);
-		if (userInput.hasNextInt()) {
-			switch (userInput.nextInt()) {
-				case 1:
-					System.out.println(new HtmlReport().createHtmlReport());
+		while (userInput.hasNext()) {
+				String input = userInput.nextLine();
+				if(input.equals("back")){
 					break;
-				case 2:
-					new CsvReport().createCsvReport();
+				}
+				switch (input) {
+					case "1":
+						System.out.println(new HtmlReport().createHtmlReport());
+						break;
+					case "2":
+						new CsvReport().createCsvReport();
+						break;
+					default:
+						System.out.println("The options entered are not valid");
+						break;
+				}
 
-					break;
 			}
-		} else {
-			System.out.println("Please enter a 1(HTML) or 2(CSV) as an option for Report type ");
-		}
-
 	}
-
 }
