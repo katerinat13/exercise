@@ -14,7 +14,7 @@ public class CsvReport extends  Report{
     public void createCsvReport(){
         List<Item> items = convertToItems(readFile());
         try {
-            Files.writeString(Conf.fileReportCsvPath, convertToCSV(items), StandardOpenOption.APPEND);
+            Files.writeString(Conf.fileReportCsvPath, convertToCSV(items), StandardOpenOption.CREATE, StandardOpenOption.APPEND);
             System.out.println("CSV report created successfully");
         }catch (Exception e){
             System.err.println("Something went wrong with the report");

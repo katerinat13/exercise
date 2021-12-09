@@ -29,6 +29,7 @@ public class Report {
                 items.add(mapper.readValue(record, Item.class));
             }
         }catch (Exception e){
+            System.err.println(e);
             System.out.println("Something went wrong in convertToItems");
         }
         return items;

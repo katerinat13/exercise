@@ -66,7 +66,7 @@ public class ParsingItem {
         try {
             // Converting the Java object into a JSON string in order to save it later on in the file
             String jsonStr = Obj.writeValueAsString(item)+ NEW_LINE;
-            Files.writeString(Conf.fileStorePath, jsonStr, StandardOpenOption.APPEND);
+            Files.writeString(Conf.fileStorePath, jsonStr, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
         }
         catch (Exception e) {
             errorMessage = "Problem while saving the Item";

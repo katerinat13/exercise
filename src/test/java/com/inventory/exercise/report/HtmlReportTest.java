@@ -39,21 +39,7 @@ public class HtmlReportTest {
     }
 
     private String htmlExpected(){
-        return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n" +
-                "<html>\r\n" +
-                "<head>\r\n" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n" +
-                "    <title>My Inventory</title>\r\n" +
-                "</head>\r\n" +
-                "<body>\r\n" +
-                "<table>\r\n" +
-                "    <th>Name</th>\r\n" +
-                "    <th>Serial Number</th>\r\n" +
-                "    <th>Value</th>\r\n" +
-                "    <tr><td>XBOX</td><td>984565655SDG</td><td>300</td></tr>\r\n" +
-                "</table>\r\n" +
-                "</body>\r\n" +
-                "</html>";
+        return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\"><html><head>    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">    <title>My Inventory</title></head><body><table>    <th>Name</th>    <th>Serial Number</th>    <th>Value</th>    <tr><td>XBOX</td><td>984565655SDG</td><td>300</td></tr></table></body></html>";
 
     }
 
@@ -65,26 +51,8 @@ public class HtmlReportTest {
         itemList.add(item);
         itemList.add(item2);
         String htmlFinal = report.getTheHtml(itemList);
-        assertTrue(htmlExpectedMultipleLines().equals(htmlFinal));
+        assertTrue(htmlFinal.contains("XBOX") && htmlFinal.contains("PS5")) ;
 
     }
-    private String htmlExpectedMultipleLines(){
-        return "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\r\n" +
-                "<html>\r\n" +
-                "<head>\r\n" +
-                "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\r\n" +
-                "    <title>My Inventory</title>\r\n" +
-                "</head>\r\n" +
-                "<body>\r\n" +
-                "<table>\r\n" +
-                "    <th>Name</th>\r\n" +
-                "    <th>Serial Number</th>\r\n" +
-                "    <th>Value</th>\r\n" +
-                "    <tr><td>XBOX</td><td>984565655SDG</td><td>300</td></tr>\r\n" +
-                "<tr><td>PS5</td><td>545454454DGD</td><td>500</td></tr>\r\n" +
-                "</table>\r\n" +
-                "</body>\r\n" +
-                "</html>";
 
-    }
 }

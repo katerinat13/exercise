@@ -4,8 +4,7 @@ import com.inventory.exercise.Conf;
 import com.inventory.exercise.Item;
 import org.apache.commons.io.FileUtils;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,10 +28,13 @@ public class HtmlReport extends Report{
                 .stream()
                 .map(i -> rowHtml(i))
                 .collect(Collectors.joining(NEW_LINE));
+        String htmlString;
+        try (InputStream in = getClass().getResourceAsStream("/template.html");
+             BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+             htmlString = reader.lines().collect((Collectors.joining()));
+             htmlString = htmlString.replace("$bodyTable", itemsHtml);
+        }
 
-        File htmlTemplateFile = new File(Conf.fileReportHtmlPath);
-        String htmlString = FileUtils.readFileToString(htmlTemplateFile);
-        htmlString = htmlString.replace("$bodyTable", itemsHtml);
         return  htmlString;
     }
 
