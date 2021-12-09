@@ -19,12 +19,7 @@ public class ReportTest {
         report = new Report();
     }
 
-    @Test
-    public void readFile()
-    {
-        List<String> file = report.readFile();
-        assertTrue( file.size()>0);
-    }
+
 
     @Test
     public void convertToItems()
