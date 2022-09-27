@@ -28,13 +28,14 @@ public class App {
 				default:
 					System.out.println("The options entered are not valid");
 					break;
+
 			}
 		}
 	}
 
 	private static String message(){
 		return "Please type 1 for Insert Data or 2 for getting a Report and press Enter.\n" +
-				"In case you want to exit type 'exit' and press Enter." ;
+				"In case you want to exit type 'exit' and press Enter.." ;
 
 	}
 	public static void storeInventory(){
